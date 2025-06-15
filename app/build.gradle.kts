@@ -36,7 +36,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "io.github.malekd5.uniticker.App"
+    mainClass = "io.github.malekd5.uniticker.Main"
 }
 
 tasks.named<Test>("test") {
