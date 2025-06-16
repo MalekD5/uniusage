@@ -6,7 +6,7 @@ import java.nio.MappedByteBuffer;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import io.github.malekd5.uniusage.data.LogEntry;
+import io.github.malekd5.uniusage.core.data.LogEntry;
 import io.github.malekd5.uniusage.utils.Utils;
 
 public class ByteRangeThread implements Runnable {

@@ -1,4 +1,4 @@
-package io.github.malekd5.uniusage.data;
+package io.github.malekd5.uniusage.core.data;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-import io.github.malekd5.uniusage.data.LogEntry;
+import io.github.malekd5.uniusage.core.data.LogEntry;
 import io.github.malekd5.uniusage.thread.ByteRangeThread.ByteRangeThreadBuilder;
 import io.github.malekd5.uniusage.utils.Utils;
 

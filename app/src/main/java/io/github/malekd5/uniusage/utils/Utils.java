@@ -28,7 +28,7 @@ public final class Utils {
         return currrentIndex * chunkSize;
     }
 
-    public static long calcualteEnd(int currrentIndex, long chunkSize, long fileSize) {
+    public static long calculateEnd(int currrentIndex, long chunkSize, long fileSize) {
         return (currrentIndex == THREAD_COUNT - 1) ? fileSize : (currrentIndex + 1) * chunkSize;
     }
 
