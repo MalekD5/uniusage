@@ -33,6 +33,15 @@ public class TopCommand implements Runnable {
 
     @Override
     public void run() {
+        if (!file.exists()) {
+            System.out.println("File does not exist: " + file.getAbsolutePath());
+            return;
+        }
+
+        if (!file.canRead()) {
+            System.out.print("File cannot be read: " + file.getAbsolutePath());
+            return;
+        }
 
         Map<String, Set<String>> operationUsers = new HashMap<>();
         Set<String> allUsers = new HashSet<>();
