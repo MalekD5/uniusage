@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
@@ -27,6 +28,13 @@ dependencies {
     implementation(libs.guava)
 }
 
+tasks.jar {
+    manifest {
+        attributes(
+            "Main-Class" to "io.github.malekd5.uniusage.Main"
+        )
+    }
+}
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
@@ -36,10 +44,19 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "io.github.malekd5.uniticker.Main"
+    mainClass = "io.github.malekd5.uniusage.Main"
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.shadowJar {
+    archiveFileName.set("app-all.jar") // optional: name of the fat jar
+    manifest {
+        attributes(
+             "Main-Class" to "io.github.malekd5.uniusage.Main"
+        )
+    }
 }
