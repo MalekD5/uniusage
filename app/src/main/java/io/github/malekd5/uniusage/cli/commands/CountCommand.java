@@ -9,7 +9,6 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 import com.beust.jcommander.converters.FileConverter;
 
-import io.github.malekd5.uniusage.cli.MainArgs;
 import io.github.malekd5.uniusage.thread.ThreadManager;
 
 @Parameters(commandDescription = "Count number of entries in log file")
@@ -20,7 +19,7 @@ public class CountCommand implements Runnable {
 
     private final ThreadManager threadManager;
 
-    public CountCommand(MainArgs args) {
+    public CountCommand() {
         this.threadManager = new ThreadManager();
     }
 

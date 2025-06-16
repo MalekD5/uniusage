@@ -6,7 +6,6 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 import com.beust.jcommander.converters.FileConverter;
 
-import io.github.malekd5.uniusage.cli.MainArgs;
 import io.github.malekd5.uniusage.thread.ThreadManager;
 
 @Parameters(commandDescription = "Find top K operations and user percentage")
@@ -25,7 +24,7 @@ public class TopOperationsCommand implements Runnable {
 
     private final ThreadManager threadManager;
 
-    public TopOperationsCommand(MainArgs args) {
+    public TopOperationsCommand() {
         this.threadManager = new ThreadManager();
     }
 

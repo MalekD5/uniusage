@@ -11,14 +11,12 @@ public class CommandMap {
 
     private JCommander commanderInstance;
 
-    private MainArgs args;
     private final Map<String, Runnable> commands;
 
     public CommandMap() {
-        this.args = new MainArgs();
         this.commands = Map.of(
-                "top", new TopOperationsCommand(args),
-                "count", new CountCommand(args));
+                "top", new TopOperationsCommand(),
+                "count", new CountCommand());
 
         initJCommander();
     }
