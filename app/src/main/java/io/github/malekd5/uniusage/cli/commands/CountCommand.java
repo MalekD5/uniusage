@@ -11,7 +11,7 @@ import com.beust.jcommander.converters.FileConverter;
 
 import io.github.malekd5.uniusage.thread.ThreadManager;
 
-@Parameters(commandDescription = "Count number of entries in log file")
+@Parameters(commandDescription = "Count number of entries in log file using multilple threads")
 public class CountCommand implements Runnable {
 
     @Parameter(names = "--logfile", description = "Path to log file", required = true, converter = FileConverter.class)
