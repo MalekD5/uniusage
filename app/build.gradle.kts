@@ -24,6 +24,8 @@ dependencies {
 
     implementation("org.jcommander:jcommander:2.0")
 
+    implementation("com.clearspring.analytics:stream:2.9.6")
+
     // This dependency is used by the application.
     implementation(libs.guava)
 }
