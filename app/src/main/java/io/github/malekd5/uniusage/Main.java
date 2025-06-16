@@ -3,10 +3,12 @@
  */
 package io.github.malekd5.uniusage;
 
+import io.github.malekd5.uniusage.cli.CommandMap;
+
 public class Main {
 
     public static void main(String... argv) {
-
+        new CommandMap().execute(argv);
     }
 
 }
