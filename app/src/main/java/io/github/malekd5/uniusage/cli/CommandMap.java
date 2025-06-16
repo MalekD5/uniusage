@@ -3,6 +3,7 @@ package io.github.malekd5.uniusage.cli;
 import java.util.Map;
 
 import com.beust.jcommander.JCommander;
+import com.beust.jcommander.MissingCommandException;
 
 import io.github.malekd5.uniusage.cli.commands.CountCommand;
 import io.github.malekd5.uniusage.cli.commands.TopCommand;
@@ -39,7 +40,13 @@ public class CommandMap {
     }
 
     public void execute(String... argv) {
-        commanderInstance.parse(argv);
+        try {
+            commanderInstance.parse(argv);
+        } catch (MissingCommandException e) {
+            System.out.println("Unknown command");
+            commanderInstance.usage();
+            return;
+        }
         String parsedCommand = commanderInstance.getParsedCommand();
 
         if (parsedCommand == null || parsedCommand.isEmpty()) {
