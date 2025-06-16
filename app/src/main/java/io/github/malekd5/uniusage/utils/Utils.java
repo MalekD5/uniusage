@@ -5,6 +5,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import com.google.common.collect.Ordering;
 
 public final class Utils {
 
@@ -61,6 +65,33 @@ public final class Utils {
             pos--;
         }
         return 0;
+    }
+
+    public static List<Map.Entry<String, ThreadSafeHLL>> getTopK(
+            Map<String, ThreadSafeHLL> map, int k) {
+
+        Ordering<Map.Entry<String, ThreadSafeHLL>> byCardinalityDesc = Ordering.natural()
+                .onResultOf((Map.Entry<String, ThreadSafeHLL> entry) -> entry.getValue().cardinality());
+
+        return new ArrayList<>(byCardinalityDesc.greatestOf(map.entrySet(), k));
+    }
+
+    public static void printOperationUsage(String operation, long count, long totalUsers) {
+        if (totalUsers == 0) {
+            System.out.printf("Operation \"%s\" has no measurable usage (0 total users).%n", operation);
+            return;
+        }
+
+        double percentage = count * 100.0 / totalUsers;
+
+        System.out.printf(
+                "Operation \"%s\" is used by %.2f%% of our users (%d users).%n",
+                operation, percentage, count);
+    }
+
+    public static double calculateStandardError(int precision) {
+        int m = 1 << precision;
+        return (1.04 / Math.sqrt(m)) * 100;
     }
 
 }
