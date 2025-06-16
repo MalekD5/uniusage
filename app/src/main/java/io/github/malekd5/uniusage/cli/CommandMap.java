@@ -5,7 +5,8 @@ import java.util.Map;
 import com.beust.jcommander.JCommander;
 
 import io.github.malekd5.uniusage.cli.commands.CountCommand;
-import io.github.malekd5.uniusage.cli.commands.TopOperationsCommand;
+import io.github.malekd5.uniusage.cli.commands.TopCommand;
+import io.github.malekd5.uniusage.cli.commands.TopHLLOperationsCommand;
 
 public class CommandMap {
 
@@ -15,7 +16,8 @@ public class CommandMap {
 
     public CommandMap() {
         this.commands = Map.of(
-                "top", new TopOperationsCommand(),
+                "tophll", new TopHLLOperationsCommand(),
+                "top", new TopCommand(),
                 "count", new CountCommand());
 
         initJCommander();
