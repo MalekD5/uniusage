@@ -203,10 +203,7 @@ Operation "open-detailed-quotes" is used by 45.11% of our users (1250 users).
 
 Yes, performance was part of the design. Here's how it’s optimized:
 
-- 🧵 **Multithreading** is used for counting entries (`count` command)
 - 🔍 **Brute force** for accuracy in small logs
+- 🧵 **Multithreading** is used for in HLLL implementation
 - 🌀 **HyperLogLog** for large logs with minimal memory overhead
 - ⚙️ Easy to switch between them using CLI flags
-
-
-
