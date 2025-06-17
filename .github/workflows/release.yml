@@ -36,7 +36,7 @@ jobs:
         id: version
         run: |
             date=$(date +'%d%m%Y')
-            patch = $env:GITHUB_RUN_NUMBER
+            patch = ${GITHUB_RUN_NUMBER}
             tag = "v1.0.$patch-$date"
             echo "tag=$tag" >> $env:GITHUB_OUTPUT
             echo "name=Release $tag" >> $env:GITHUB_OUTPUT
