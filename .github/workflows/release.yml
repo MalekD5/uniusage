@@ -35,11 +35,11 @@ jobs:
       - name: Get version for release
         id: version
         run: |
-            date=$(date +'%d%m%Y')
-            patch = ${GITHUB_RUN_NUMBER}
-            tag = "v1.0.$patch-$date"
-            echo "tag=$tag" >> $env:GITHUB_OUTPUT
-            echo "name=Release $tag" >> $env:GITHUB_OUTPUT
+          date=$(date +'%d%m%Y')
+          patch=${GITHUB_RUN_NUMBER}
+          tag="v1.0.${patch}-${date}"
+          echo "RELEASE_VERSION=$tag" >> $GITHUB_OUTPUT
+          echo "RELEASE_NAME=Release $tag" >> $GITHUB_OUTPUT
 
       - name: Generate changelog from commits
         id: changelog
