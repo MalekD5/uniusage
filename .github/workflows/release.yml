@@ -36,9 +36,22 @@ jobs:
         id: version
         run: |
           MAJOR=1
-          MINOR=0
+          # Get latest tag that matches vMajor.Minor-*
+          LATEST_TAG=$(git tag --list "v${MAJOR}.*" --sort=-creatordate | head -n 1)
+          if [ -z "$LATEST_TAG" ]; then
+            MINOR=0
+          else
+            # Extract minor from tag format v1.<minor>-ddmmyyyy
+            # Using bash regex to get minor number
+            if [[ "$LATEST_TAG" =~ v${MAJOR}\.([0-9]+)-.* ]]; then
+              MINOR=$(( ${BASH_REMATCH[1]} + 1 ))
+            else
+              MINOR=0
+            fi
+          fi
           DATE=$(date +'%d%m%Y')
-          echo "RELEASE_VERSION=${MAJOR}.${MINOR}-${DATE}" >> $GITHUB_OUTPUT
+          RELEASE_VERSION="${MAJOR}.${MINOR}-${DATE}"
+          echo "RELEASE_VERSION=${RELEASE_VERSION}" >> $GITHUB_OUTPUT
 
       - name: Generate changelog from commits
         id: changelog
