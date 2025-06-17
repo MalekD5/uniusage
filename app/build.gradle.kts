@@ -61,4 +61,6 @@ tasks.shadowJar {
              "Main-Class" to "io.github.malekd5.uniusage.Main"
         )
     }
+
+    minimize()
 }
