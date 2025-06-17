@@ -55,7 +55,7 @@ tasks.named<Test>("test") {
 }
 
 tasks.shadowJar {
-    archiveFileName.set("app-all.jar") // optional: name of the fat jar
+    archiveFileName.set("UniUsage.jar")
     manifest {
         attributes(
              "Main-Class" to "io.github.malekd5.uniusage.Main"
