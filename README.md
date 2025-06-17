@@ -1,4 +1,18 @@
+**Table of Contents**
+
+- [Installation](#installation)
+- [Commands](#commands)
+  - [tophll](#tophll)
+  - [top](#top)
+  - [count](#count)
+- [Problem Description](#problem-description)
+  - [Problem 1](#problem-1)
+  - [Problem 2](#problem-2)
+  - [Problem 3](#problem-3)
+  - [Problem 4](#problem-4)
+
 # 📊 UniUsage CLI Tool
+
 
 **UniUsage** is a command-line tool for analyzing user behavior from log files. It provides three core functionalities:
 
@@ -7,23 +21,22 @@
 - 🔢 Count total number of log entries with multithreading
 
 
-
 ## 🚀 Installation
 
-> **Requirement:** Java **17** or higher
-
-### Build using Gradle
-
-```bash
-./gradlew build
-```
+- **Requirement:** Java **17** or higher
+- No need to run `gradlew build` before running the CLI, the script will do it for you
 
 ### Run the CLI
 
-```bash
-java -jar build/libs/UniUsage.jar [command] [options]
+on Windows:
+```powershell
+.\uniusage.bat [command] [options]
 ```
 
+on Linux/MacOS:
+```bash
+./uniusage.sh [command] [options]
+```
 
 
 ## ⚙️ Available Commands
@@ -34,8 +47,16 @@ Estimate top K operations by unique user count using **HyperLogLog**.
 
 **Usage:**
 
+on Windows:
+
+```powershell
+.\uniusage.bat tophll --logfile <path_to_log_file> [--k <top_k>] [--precision <hll_precision>]
+```
+
+on Linux/MacOS:
+
 ```bash
-java -jar build/libs/UniUsage.jar tophll --logfile <path_to_log_file> [--k <top_k>] [--precision <hll_precision>]
+./uniusage.sh tophll --logfile <path_to_log_file> [--k <top_k>] [--precision <hll_precision>]
 ```
 
 **Options:**
@@ -44,7 +65,7 @@ java -jar build/libs/UniUsage.jar tophll --logfile <path_to_log_file> [--k <top_
 - `--k`, `--top-k`: Number of top operations to display (default: `2`)  
 - `--precision`, `--hll-precision`: HLL precision (default: `18`, ~0.2% standard error)
 
-
+**Note on Precision**: The higher the precision, the more accurate the estimation, but the slower the computation and the higher the memory usage.
 
 ### 🔹 `top`
 
@@ -53,8 +74,14 @@ Brute-force method to find top K operations by unique users.
 
 **Usage:**
 
+on Windows:
+```powershell
+.\uniusage.bat top --logfile <path_to_log_file> [--k <top_k>]
+```
+
+on Linux/MacOS:
 ```bash
-java -jar build/libs/UniUsage.jar top --logfile <path_to_log_file> [--k <top_k>]
+./uniusage.sh top --logfile <path_to_log_file> [--k <top_k>]
 ```
 
 **Options:**
@@ -63,21 +90,26 @@ java -jar build/libs/UniUsage.jar top --logfile <path_to_log_file> [--k <top_k>]
 - `--k`, `--top-k`: Number of top operations to display (default: `2`)
 
 
-
 ### 🔹 `count`
 
 Multithreaded log processor to count **total number of entries** in the log file.
 
 **Usage:**
 
+on Windows:
+```powershell
+.\uniusage.bat count --logfile <path_to_log_file>
+```
+
+on Linux/MacOS:
+
 ```bash
-java -jar build/libs/UniUsage.jar count --logfile <path_to_log_file>
+./uniusage.sh count --logfile <path_to_log_file>
 ```
 
 **Options:**
 
 - `--logfile` (required): Path to the log file
-
 
 
 ## 🧠 Problem Overview
@@ -87,8 +119,6 @@ We are given a log file containing user actions and asked to:
 1. Identify the **top K most used operations**.
 2. Determine the **percentage of users** who used each operation.
 3. Ensure **each user is counted once per operation**.
-
-
 
 ## 🧩 Problem 1 — Finding Top K Operations
 
