@@ -6,7 +6,7 @@
 - 🔍 Brute-force count of unique users per operation (for small datasets)
 - 🔢 Count total number of log entries with multithreading
 
----
+
 
 ## 🚀 Installation
 
@@ -24,7 +24,7 @@
 java -jar build/libs/UniUsage.jar [command] [options]
 ```
 
----
+
 
 ## ⚙️ Available Commands
 
@@ -44,7 +44,7 @@ java -jar build/libs/UniUsage.jar tophll --logfile <path_to_log_file> [--k <top_
 - `--k`, `--top-k`: Number of top operations to display (default: `2`)  
 - `--precision`, `--hll-precision`: HLL precision (default: `18`, ~0.2% standard error)
 
----
+
 
 ### 🔹 `top`
 
@@ -62,7 +62,7 @@ java -jar build/libs/UniUsage.jar top --logfile <path_to_log_file> [--k <top_k>]
 - `--logfile` (required): Path to the log file  
 - `--k`, `--top-k`: Number of top operations to display (default: `2`)
 
----
+
 
 ### 🔹 `count`
 
@@ -78,7 +78,7 @@ java -jar build/libs/UniUsage.jar count --logfile <path_to_log_file>
 
 - `--logfile` (required): Path to the log file
 
----
+
 
 ## 🧠 Problem Overview
 
@@ -88,7 +88,7 @@ We are given a log file containing user actions and asked to:
 2. Determine the **percentage of users** who used each operation.
 3. Ensure **each user is counted once per operation**.
 
----
+
 
 ## 🧩 Problem 1 — Finding Top K Operations
 
@@ -115,7 +115,7 @@ Operation "filter-changed" is used by 80.01% of our users (2217 users).
 
 > HLL provides high performance and low memory usage with a small error margin (±0.2%).
 
----
+
 
 #### 🛠️ 2. Brute Force Algorithm (Accurate for Small/Medium Logs)
 
@@ -132,7 +132,7 @@ Operation "filter-changed" is used by 80.04% of our users (2218 users).
 
 > Ideal for debugging, development, and small-scale datasets.
 
----
+
 
 ## 🧪 Problem 2 — How Do You Verify It Works?
 
@@ -143,7 +143,7 @@ Operation "filter-changed" is used by 80.04% of our users (2218 users).
 - 🧪 Ran both brute-force and HLL implementations on the samples
 - ✅ Verified the outputs matched the expected results
 
----
+
 
 ## 🔄 Problem 3 — Changing K Easily
 
@@ -165,7 +165,7 @@ Operation "open-detailed-quotes" is used by 45.11% of our users (1250 users).
 
 > The CLI is flexible — change `--top-k` to any number you need.
 
----
+
 
 ## 🚄 Problem 4 — Why is it Fast or Slow?
 
@@ -178,5 +178,5 @@ Yes, performance was part of the design. Here's how it’s optimized:
 - 🌀 **HyperLogLog** for large logs with minimal memory overhead
 - ⚙️ Easy to switch between them using CLI flags
 
----
+
 
